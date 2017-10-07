@@ -88,4 +88,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings =
+ {
+  user_name: ENV['SENDGRID_USERNAME'], ##変更
+  password: ENV['SENDGRID_PASSWORD'], ##変更
+  domain: "example.com",
+  address: "smtp.SendGrid.net",
+  port: 587,
+  authentication: :plain,
+  enable_starttls_auto: true
+ }
 end
